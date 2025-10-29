@@ -1,70 +1,218 @@
-# Getting Started with Create React App
+# 🌱 Eco-Puntos Recolector
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicación web para recolectores de residuos reciclables del sistema Eco-Puntos.
 
-## Available Scripts
+## 📋 Características
 
-In the project directory, you can run:
+### Autenticación
+- Login exclusivo para usuarios con rol `recolector`
+- Validación de credenciales con el backend Laravel
+- Almacenamiento seguro del token JWT
 
-### `npm start`
+### Dashboard
+- Estadísticas en tiempo real:
+  - Puntos ganados totales
+  - QRs generados
+  - Entregas pendientes
+  - Kilogramos recogidos
+- Información del punto de acopio asignado
+- Historial de actividad reciente
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Generación de QR
+- Formulario para registrar residuos recibidos
+- Selección de tipo de residuo (plástico, papel, vidrio, etc.)
+- Ingreso de cantidad en kilogramos
+- Cálculo automático de puntos estimados
+- Generación de código QR único
+- Descarga del QR en formato PNG
+- Vista previa del QR generado
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Mis QRs
+- Lista completa de todos los QRs generados
+- Filtrado por estado (Pendiente/Reclamado)
+- Vista detallada de cada QR
+- Información del tipo de residuo y cantidad
+- Estado de reclamación de puntos
 
-### `npm test`
+### Entregas Pendientes
+- Lista de artículos de tienda canjeados por clientes
+- Visualización de datos del cliente (DNI, nombre)
+- Marcar artículos como entregados
+- Confirmación antes de cambiar estado
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Residuos Recibidos
+- Historial completo de todos los residuos registrados
+- Estadísticas detalladas (total registros, kg, puntos)
+- Filtros avanzados:
+  - Rango de fechas
+  - Tipo de residuo
+  - Estado (Pendiente/Reclamado)
+- Tabla con toda la información de cada residuo
 
-### `npm run build`
+### Perfil
+- Visualización de información personal
+- Edición de datos (nombre, apellido, email, teléfono, DNI)
+- Cambio de contraseña
+- Vista de puntos acumulados
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🛠️ Tecnologías
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **React 18** - Framework principal
+- **React Router DOM** - Navegación
+- **Bootstrap 5** - Framework CSS
+- **React Bootstrap** - Componentes React de Bootstrap
+- **Axios** - Cliente HTTP
+- **React Icons** - Iconografía
+- **qrcode.react** - Generación de códigos QR
+- **Context API** - Manejo de estado global
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📁 Estructura del Proyecto
 
-### `npm run eject`
+```
+eco-puntos-recolector/
+├── public/
+│   ├── index.html
+│   └── ...
+├── src/
+│   ├── components/
+│   │   ├── Navbar.js          # Barra de navegación
+│   │   └── StatCard.js        # Tarjetas de estadísticas
+│   ├── context/
+│   │   ├── AuthContext.js     # Autenticación
+│   │   ├── ThemeContext.js    # Tema claro/oscuro
+│   │   └── NotificationContext.js # Notificaciones
+│   ├── pages/
+│   │   ├── Login.js           # Inicio de sesión
+│   │   ├── Dashboard.js       # Panel principal
+│   │   ├── GenerarQR.js       # Generar códigos QR
+│   │   ├── MisQRs.js          # Lista de QRs
+│   │   ├── CanjesPendientes.js # Entregas pendientes
+│   │   ├── ResiduosRecibidos.js # Historial de residuos
+│   │   └── Perfil.js          # Perfil de usuario
+│   ├── services/
+│   │   ├── api.js             # Configuración de Axios
+│   │   └── recolectorService.js # Servicios API
+│   ├── App.js                 # Componente principal
+│   ├── App.css                # Estilos globales
+│   └── index.js               # Punto de entrada
+├── .env                        # Variables de entorno
+├── package.json
+└── README.md
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🚀 Instalación
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Clonar el repositorio**
+```bash
+cd eco-puntos-recolector
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. **Instalar dependencias**
+```bash
+npm install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. **Configurar variables de entorno**
+Crear archivo `.env`:
+```env
+REACT_APP_API_URL=http://localhost:8000/api
+```
 
-## Learn More
+4. **Iniciar la aplicación**
+```bash
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+La aplicación se abrirá en `http://localhost:3001`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🔐 Credenciales de Prueba
 
-### Code Splitting
+Para probar la aplicación, necesitas un usuario con rol `recolector` en el backend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Ejemplo:
+```
+Email: recolector@ecopuntos.com
+Password: [tu contraseña]
+```
 
-### Analyzing the Bundle Size
+## 📡 Endpoints del Backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+El frontend consume los siguientes endpoints:
 
-### Making a Progressive Web App
+### Autenticación
+- `POST /login` - Iniciar sesión
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Recolector
+- `GET /recolector/puntos` - Obtener estadísticas
+- `GET /recolector/qrs` - Lista de QRs generados
+- `POST /recolector/generar-qr` - Generar nuevo QR
+- `GET /recolector/canjes-pendientes` - Artículos para entregar
+- `PUT /recolector/marcar-entregado/{id}` - Marcar artículo entregado
+- `GET /recolector/residuos-recibidos` - Historial de residuos
+- `GET /recolector/transacciones` - Transacciones del recolector
 
-### Advanced Configuration
+### Perfil
+- `GET /recolector/perfil` - Datos del perfil
+- `PUT /recolector/perfil` - Actualizar perfil
+- `PUT /recolector/cambiar-password` - Cambiar contraseña
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Catálogos
+- `GET /tipos-residuos` - Tipos de residuos
+- `GET /puntos-acopio` - Puntos de acopio
 
-### Deployment
+## 🎨 Características de UI/UX
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **Tema Oscuro**: Diseño moderno con gradientes y efectos glassmorphism
+- **Responsive**: Adaptable a dispositivos móviles, tablets y escritorio
+- **Notificaciones Toast**: Feedback visual de las acciones del usuario
+- **Animaciones**: Transiciones suaves y efectos hover
+- **Gradientes**: Colores vibrantes para diferentes secciones
+- **Icons**: Iconografía clara y descriptiva con React Icons
 
-### `npm run build` fails to minify
+## 🔄 Flujo de Trabajo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. **Login**: El recolector inicia sesión con sus credenciales
+2. **Dashboard**: Ve estadísticas y actividad reciente
+3. **Recibir Residuos**: 
+   - Cliente llega con residuos
+   - Recolector pesa y registra en "Generar QR"
+   - Se genera QR con puntos estimados
+   - Cliente recibe QR para reclamar puntos
+4. **Gestionar Entregas**:
+   - Ve canjes pendientes en "Entregas"
+   - Verifica DNI del cliente
+   - Entrega artículo
+   - Marca como entregado en el sistema
+5. **Historial**: Consulta residuos recibidos y transacciones
+
+## 📝 Scripts Disponibles
+
+- `npm start` - Inicia el servidor de desarrollo
+- `npm build` - Genera build de producción
+- `npm test` - Ejecuta tests
+- `npm eject` - Eyecta configuración de Create React App
+
+## 🔒 Seguridad
+
+- Validación de rol en el frontend y backend
+- Token JWT almacenado en localStorage
+- Interceptores Axios para autenticación automática
+- Protección de rutas con ProtectedRoute
+- Validación de formularios
+
+## 🐛 Solución de Problemas
+
+**Error de CORS**: Asegúrate que el backend Laravel tenga configurado CORS correctamente.
+
+**Error 401**: Verifica que el token JWT sea válido y que el usuario tenga rol `recolector`.
+
+**API no responde**: Verifica que el backend esté corriendo en `http://localhost:8000`.
+
+## 📄 Licencia
+
+Este proyecto es parte del sistema Eco-Puntos.
+
+## 👥 Desarrolladores
+
+Desarrollado para la gestión de recolectores en el sistema de reciclaje Eco-Puntos.
+
